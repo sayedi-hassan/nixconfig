@@ -11,9 +11,9 @@
     ];
 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -44,6 +44,9 @@
     xkbVariant = "";
   };
 
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -68,14 +71,27 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.jdoe = {
+  users.users.sayedi = {
     isNormalUser = true;
-    description = "Jane Doe";
-    extraGroups = [ "networkmanager" "wheel" ];
+    description = "Sayedi";
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    packages = with pkgs; [
+      firefox
+      kate
+    #  thunderbird
+    ];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  nix = {
+    package = pkgs.nixUnstable;
+    settings.auto-optimise-store = true;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -83,6 +99,8 @@
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
+
+  virtualisation.docker.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

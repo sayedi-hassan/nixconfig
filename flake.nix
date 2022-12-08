@@ -11,10 +11,10 @@
       users = {
         me = {
           # CHANGE ME TO YOUR USER
-          name = "Jane Doe";
-          username = "jdoe";
-          homeDirectory = "/home/jdoe";
-          email = "jane.doe@example.com";
+          name = "Sayedi Hassan";
+          username = "sayedi";
+          homeDirectory = "/home/sayedi";
+          email = "sayedi.hassan@playtravel.com.au";
         };
         docker = {
           name = "Docker User";
@@ -52,7 +52,7 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 # CHANGE 'jdoe' TO YOUR USERNAME
-                users.jdoe = {
+                users.sayedi = {
                   imports = [
                     ./home
                     ./home/graphical.nix

@@ -5,5 +5,12 @@
   ];
   home.packages = with pkgs; [
     firefox
+    google-chrome
+    slack
+    vscode
+    teams
+    postman
+    dbeaver
+    lens
   ];
 }

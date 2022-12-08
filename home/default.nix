@@ -18,5 +18,7 @@
     wget
     unzip
     zip
+    awscli2
+    docker-compose
   ];
 }
